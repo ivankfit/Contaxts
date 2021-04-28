@@ -135,55 +135,56 @@ let refreshDOMTable =() => {
         enableDisableNewUserModal('enable');
     });
 
-    for(let i=0; i<editBtns.length; i++){
-        editBtns[i].addEventListener('click', ($event) =>{
-            let nameToEdit = $event.target.parentElement.children[0].innerText;
-            let personToEdit = cmsTable[nameToEdit];
+    // for(let i = 0; i < editBtns.length; i++){
+    //     editBtns[i].addEventListener('click', ($event) =>{
+    //         let nameToEdit = $event.target.parentElement.children[0].innerText;
+    //         let personToEdit = cmsTable[nameToEdit];
 
-            enableDisableNewUserModal('enable');
+    //         enableDisableNewUserModal('enable');
 
-            let newPersonName = document.getElementById('newPersonName');
-            let newPersonPhone = document.getElementById('newPersonPhone');
-            let newPersonAddress = document.getElementById('newPersonAddress');
-            newPersonName.value = nameToEdit;
-            newPersonPhone.value = personToEdit.phone;
-            newPersonAddress.value = personToEdit.address;
-            enableDisableNameInput('disable');
-        });
-    }
+    //         let newPersonName = document.getElementById('newPersonName');
+    //         let newPersonPhone = document.getElementById('newPersonPhone');
+    //         let newPersonAddress = document.getElementById('newPersonAddress');
+    //         newPersonName.value = nameToEdit;
+    //         newPersonPhone.value = personToEdit.phone;
+    //         newPersonAddress.value = personToEdit.address;
+    //         enableDisableNameInput('disable');
+    //     });
+    // }
 
-    for(let i=0; i<deleteBtns.length; i++){
-        deleteBtns[i].addEventListener('click', ($event) =>{
-            let nameToDelete = $event.target.parentElement.children[0].innerText;
-            let isSure = window.confirm('Are you sure you want to delete ' + nameToDelete + '?');
-            if(isSure)
-                deleteUserFromTable(nameToDelete);
+//     for(let i=0; i<deleteBtns.length; i++){
+//         deleteBtns[i].addEventListener('click', ($event) =>{
+//             let nameToDelete = $event.target.parentElement.children[0].innerText;
+//             let isSure = window.confirm('Are you sure you want to delete ' + nameToDelete + '?');
+//             if(isSure)
+//                 deleteUserFromTable(nameToDelete);
 
-        });
-    } 
-let deleteUserFromTable = (userName) => {
-    let tempTable ={};
-    let cmsTableKeys = Object.keys(cmsTable);
-    for (let i=0; i < cmsTableKeys.length; i++){
-        if(userName !== cmsTableKeys[i]){
-            tempTable[cmsTableKeys[i]] = cmsTable[cmsTableKeys[i]];
-        }
-    }
-    cmsTable = tempTable;
-    localStorage.setItem(tablekey, JSON.stringify(cmsTable));
-    refreshDOMTable();
+//         });
+//     } 
+// let deleteUserFromTable = (userName) => {
+//     let tempTable ={};
+//     let cmsTableKeys = Object.keys(cmsTable);
+//     for (let i=0; i < cmsTableKeys.length; i++){
+//         if(userName !== cmsTableKeys[i]){
+//             tempTable[cmsTableKeys[i]] = cmsTable[cmsTableKeys[i]];
+//         }
+//     }
+//     cmsTable = tempTable;
+//     localStorage.setItem(tablekey, JSON.stringify(cmsTable));
+//     refreshDOMTable();
+// }
+
+// let init = () => {
+
+//     if(localStorage.getItem(tablekey)){
+//         cmsTable = JSON.parse(localStorage.getItem(tablekey));
+//     }else{
+//         cmsTable = cmsTableDemo;
+//         localStorage.setItem(tablekey, JSON.stringify(cmsTable));
+//     }
+//     refreshDOMTable();
+// }
+// init();
+
 }
-
-let init = () => {
-
-    if(localStorage.getItem(tablekey)){
-        cmsTable = JSON.parse(localStorage.getItem(tablekey));
-    }else{
-        cmsTable = cmsTableDemo;
-        localStorage.setItem(tablekey, JSON.stringify(cmsTable));
-    }
-    refreshDOMTable();
-}
-init();
-
-}
+refreshDOMTable();
