@@ -1,53 +1,41 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="styles.css">
-        <title>Login</title>
-
+        <title>Contaxt</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/b9a9d05b07.js" crossorigin="anonymous"></script>
     </head>
-
     <body>
-        <div class="container">
-            <div class="card">
-                <div class="inner-box" id="card">
-                    <div class="card-front">
-                       <h2>LOGIN</h2>
-                       <form>
-                           <input type="email" class="input-box" placeholder="Email Id" required>
-                           <input type="password" class="input-box" placeholder="Password" required>
-                           <button type="submit" class="submit-btn"><a href="index.html" style="color: white;">Submit</a></button>
-                           <input type="checkbox"><span>Remember Me</span>
-                       </form>
-                       <button type="button" class="btn" onclick="openRegister()">I'm New Here</button>
-                       <a href="#" style="color: white;">Forgot Password</a>
-                    </div>
-                    <div class="card-back">
-                        <h2>REGISTER</h2>
-                        <form>
-                            <input type="text" class="input-box" placeholder="Your Name" required>
-                            <input type="email" class="input-box" placeholder="Email Id" required>
-                            <input type="password" class="input-box" placeholder="Password" required>
-                            <button type="submit" class="submit-btn">Submit</button>
-                            <input type="checkbox"><span>Remember Me</span>
-                        </form>
-                        <button type="button" class="btn" onclick="openLogin()">I Have Account</button>
-                        <a href="#" style="color: white;">Forgot Password</a>
-                     </div>   
-                    </div>
-                </div>
+        <h1>Welcome to Contaxt</h1>
+        <div class="cms-table-container" id="cmsTableContainer">
+            <div class="cms-table-row">
+                <div class="cms-table-column cms-name cms-header">Name</div>
+                <div class="cms-table-column cms-phone cms-header">Phone</div>
+                <div class="cms-table-column cms-address cms-header">Address</div>
+                <div class="cms-table-column cms-header cms-add-entry-column" id="cmsAddNewEntry">+</div>
             </div>
+            <span id="tableBody"></span>
         </div>
-        <script>
-            var card =document.getElementById("card");
+        <div class="disable-modal" id="backdrop"></div>
+        <div class="disable-modal" id="newPersonModal">
+        <h1> Add New Person </h1>
+        <label for="newPersonName">Name</label>
+        <input type="text" id="newPersonName">
 
-            function openRegister(){
-                card.style.transform = "rotateY(-180deg)";
-            }
+        <label for="newPersonPhone">Phone</label>
+        <input type="text" id="newPersonPhone">
 
-            function openLogin(){
-                card.style.transform = "rotateY(0deg)";
-            }
-        </script>
+        <label for="newPersonAddress">Address</label>
+        <input type="text" id="newPersonAddress">
+
+        <button id="newPersonCancelBtn">Cancel</button>
+        <button id="newPersonSubmitBtn">Submit</button>
+        
+        </div>
+        <button id="clearBtn" style="position:absolute; right:0px; bottom:0px;">Clear Local Storage</button>
+        <script src="script.js"></script>
+        <i class="fas fa-thumbs-up fa-5x"></i>
     </body>
 </html>
