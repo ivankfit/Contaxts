@@ -7,16 +7,16 @@ localStorage.removeItem(tablekey);
 
 let cmsTable;
 //dictionary
-let cmsTableDemo = {
-'Ivan Tweheyo': {
-    'phone':  '077-712-2972',
-    'address': '124 Naguru, Kampala, Ug, 256'
-},
-'Cryce Ahebwa': {
-    'phone':  '070-512-2982',
-    'address': '987 Kigali, Rwanda, Ug, 255'
-},
-};
+// let cmsTableDemo = {
+// 'Ivan Tweheyo': {
+//     'phone':  '077-712-2972',
+//     'address': '124 Naguru, Kampala, Ug, 256'
+// },
+// 'Cryce Ahebwa': {
+//     'phone':  '070-512-2982',
+//     'address': '987 Kigali, Rwanda, Ug, 255'
+// },
+// };
 //function to disable Name while editing the form
 let enableDisableNameInput = (option) =>{
     let newPersonName = document.getElementById('newPersonName');
@@ -97,24 +97,24 @@ let refreshDOMTable =() => {
 
     //add event listeners to the button clicks
     newPersonSubmitBtn.addEventListener('click', ()=>{
-        let newPersonName = document.getElementsById('newPersonName').value.trim();
-        let newPersonPhone = document.getElementsById('newPersonPhone').value.trim();
-        let newPersonAddress = document.getElementsById('newPersonAddress').value.trim();
+        let newPersonName = document.getElementById('newPersonName').value.trim();
+        let newPersonPhone = document.getElementById('newPersonPhone').value.trim();
+        let newPersonAddress = document.getElementById('newPersonAddress').value.trim();
 
         if(newPersonName === '')
-            newPersonName.className = 'input-err';
+            document.getElementById('newPersonName').className = 'input-err';
         else
-            newPersonName.className ='';
+            document.getElementById('newPersonName').className ='';
 
         if(newPersonPhone === '')
-            newPersonPhone.className = 'input-err'
+            document.getElementById('newPersonPhone').className = 'input-err'
         else
-            newPersonPhone.className ='';
+            document.getElementById('newPersonPhone').className ='';
 
         if(newPersonAddress === '')
-            newPersonAddress.className ='input-err';
+            document.getElementById('newPersonAddress').className ='input-err';
         else
-            newPersonAddress.className ='';
+            document.getElementById('newPersonAddress').className ='';
 
         if(newPersonName !=='' && newPersonPhone !=='' && newPersonAddress !==''){
             let newPerson = {};
@@ -135,56 +135,55 @@ let refreshDOMTable =() => {
         enableDisableNewUserModal('enable');
     });
 
-    // for(let i = 0; i < editBtns.length; i++){
-    //     editBtns[i].addEventListener('click', ($event) =>{
-    //         let nameToEdit = $event.target.parentElement.children[0].innerText;
-    //         let personToEdit = cmsTable[nameToEdit];
+    for(let i = 0; i < editBtns.length; i++){
+        editBtns[i].addEventListener('click', ($event) =>{
+            let nameToEdit = $event.target.parentElement.children[0].innerText;
+            let personToEdit = cmsTable[nameToEdit];
 
-    //         enableDisableNewUserModal('enable');
+            enableDisableNewUserModal('enable');
 
-    //         let newPersonName = document.getElementById('newPersonName');
-    //         let newPersonPhone = document.getElementById('newPersonPhone');
-    //         let newPersonAddress = document.getElementById('newPersonAddress');
-    //         newPersonName.value = nameToEdit;
-    //         newPersonPhone.value = personToEdit.phone;
-    //         newPersonAddress.value = personToEdit.address;
-    //         enableDisableNameInput('disable');
-    //     });
-    // }
+            let newPersonName = document.getElementById('newPersonName');
+            let newPersonPhone = document.getElementById('newPersonPhone');
+            let newPersonAddress = document.getElementById('newPersonAddress');
+            newPersonName.value = nameToEdit;
+            newPersonPhone.value = personToEdit.phone;
+            newPersonAddress.value = personToEdit.address;
+            enableDisableNameInput('disable');
+        });
+    }
 
-//     for(let i=0; i<deleteBtns.length; i++){
-//         deleteBtns[i].addEventListener('click', ($event) =>{
-//             let nameToDelete = $event.target.parentElement.children[0].innerText;
-//             let isSure = window.confirm('Are you sure you want to delete ' + nameToDelete + '?');
-//             if(isSure)
-//                 deleteUserFromTable(nameToDelete);
+    for(let i=0; i<deleteBtns.length; i++){
+        deleteBtns[i].addEventListener('click', ($event) =>{
+            let nameToDelete = $event.target.parentElement.children[0].innerText;
+            let isSure = window.confirm('Are you sure you want to delete ' + nameToDelete + '?');
+            if(isSure)
+                deleteUserFromTable(nameToDelete);
 
-//         });
-//     } 
-// let deleteUserFromTable = (userName) => {
-//     let tempTable ={};
-//     let cmsTableKeys = Object.keys(cmsTable);
-//     for (let i=0; i < cmsTableKeys.length; i++){
-//         if(userName !== cmsTableKeys[i]){
-//             tempTable[cmsTableKeys[i]] = cmsTable[cmsTableKeys[i]];
-//         }
-//     }
-//     cmsTable = tempTable;
-//     localStorage.setItem(tablekey, JSON.stringify(cmsTable));
-//     refreshDOMTable();
-// }
-
-// let init = () => {
-
-//     if(localStorage.getItem(tablekey)){
-//         cmsTable = JSON.parse(localStorage.getItem(tablekey));
-//     }else{
-//         cmsTable = cmsTableDemo;
-//         localStorage.setItem(tablekey, JSON.stringify(cmsTable));
-//     }
-//     refreshDOMTable();
-// }
-// init();
-
+        })
+    } 
 }
-refreshDOMTable();
+let deleteUserFromTable = (userName) => {
+    let tempTable = {};
+    let cmsTableKeys = Object.keys(cmsTable);
+    for (let i = 0; i < cmsTableKeys.length; i++){
+        if(userName !== cmsTableKeys[i]){
+            tempTable[cmsTableKeys[i]] = cmsTable[cmsTableKeys[i]];
+        }
+    }
+    cmsTable = tempTable;
+    localStorage.setItem(tablekey, JSON.stringify(cmsTable));
+    refreshDOMTable();
+}
+
+let init = () => {
+
+    if(localStorage.getItem(tablekey)){
+        cmsTable = JSON.parse(localStorage.getItem(tablekey));
+    }else{
+        cmsTable = cmsTableDemo;
+        localStorage.setItem(tablekey, JSON.stringify(cmsTable));
+    }
+    refreshDOMTable();
+}
+init();
+
