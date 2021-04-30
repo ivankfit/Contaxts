@@ -7,16 +7,16 @@ localStorage.removeItem(tablekey);
 
 let cmsTable;
 //dictionary
-// let cmsTableDemo = {
-// 'Ivan Tweheyo': {
-//     'phone':  '077-712-2972',
-//     'address': '124 Naguru, Kampala, Ug, 256'
-// },
-// 'Cryce Ahebwa': {
-//     'phone':  '070-512-2982',
-//     'address': '987 Kigali, Rwanda, Ug, 255'
-// },
-// };
+let cmsTableDemo = {
+'Ivan Tweheyo': {
+    'phone':  '077-712-2972',
+    'address': '124 Naguru, Kampala, Ug, 256'
+},
+'Cryce Ahebwa': {
+    'phone':  '070-512-2982',
+    'address': '987 Kigali, Rwanda, Ug, 255'
+},
+};
 //function to disable Name while editing the form
 let enableDisableNameInput = (option) =>{
     let newPersonName = document.getElementById('newPersonName');
@@ -28,7 +28,7 @@ let enableDisableNameInput = (option) =>{
 }
 
 let refreshDOMTable =() => {
-    cmsTable = cmsTableDemo;
+    // cmsTable = cmsTableDemo;
     let cmsTableKeys = Object.keys(cmsTable); // thi will create an array of  contact names and keeps populating the table
     let tableContainer = document.getElementById('cmsTableContainer')
     let oldTableBody = document.getElementById('tableBody'); 
