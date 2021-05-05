@@ -27,6 +27,16 @@ h1{
 .cms-table-row{
     display:flex;
 }
+.cms-table-row input[type=text] {
+    border: none;
+    margin-top: 1px;
+    font-size: 10px;
+    background-color: rgba(236, 54, 68, 0.8);
+  }
+  ::placeholder{
+      font-size: 10px;
+      color: white;
+  }
 
 .cms-table-column{
     background-color: rgba(236, 54, 68, 0.8);
